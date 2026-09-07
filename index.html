@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<!--
+  ─────────────────────────────────────────────────────────────────────────
+  นามบัตรออนไลน์ — lemonade678.github.io
+
+  เว็บนี้เป็น "ตัวย่อ" ของพอร์ตเต็มที่อยู่บน Vercel
+  กลุ่มเป้าหมายคือ dev ที่กดจากโปรไฟล์ GitHub เข้ามา อยากเห็นเร็ว ๆ ว่า
+  คนนี้ทำอะไรมาบ้าง แล้วกดเข้าไปดูโค้ดต่อ — ไม่ได้มาอ่านเรียงความ
+
+  เหตุผลที่เขียนเป็น HTML ไฟล์เดียว ไม่ใช้ Next.js:
+    1. GitHub Pages เสิร์ฟไฟล์นี้ได้ตรง ๆ ไม่ต้องมี build step ไม่ต้องมี Actions
+       ไม่ต้องมี node_modules — push แล้วขึ้นเลย
+    2. โหลดเสร็จในครั้งเดียว ไม่มี JS ให้รอ ไม่มี hydration
+    3. ของแบบนี้ยิ่งชิ้นส่วนน้อยยิ่งพังยาก อีกสองปีกลับมาแก้ก็ยังแก้ได้ทันที
+       โดยไม่ต้องมานั่งอัปเดต dependency ก่อน
+
+  รายการโปรเจกต์ดึงมาจาก repo จริงบน github.com/Lemonade678
+  ถ้าเพิ่ม/ลบ repo ต้องมาแก้ตรงนี้เอง (ตั้งใจไม่ยิง GitHub API เพราะ
+  จะต้องรอ network ก่อนเห็นเนื้อหา ซึ่งขัดกับเหตุผลข้อ 2)
+  ─────────────────────────────────────────────────────────────────────────
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nutt Bhanidch — Computer Vision & LLM</title>
+<meta name="description" content="Computer vision and LLM engineer. Chip anomaly detection on a production line, lane-change detection from road video, and a Thai interview LLM fine-tuned from scratch.">
+<meta property="og:title" content="Nutt Bhanidch — Computer Vision & LLM">
+<meta property="og:description" content="Computer vision and LLM engineer, Bangkok. Selected GitHub work.">
+<meta property="og:type" content="profile">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ชุดสีและฟอนต์ชุดเดียวกับพอร์ตเต็ม เพื่อให้คนที่กดข้ามไปมารู้สึกว่าเป็นที่เดียวกัน */
+:root{
+  --bg:#1A1310; --surface:#241B16; --surface2:#2E231C; --line:#3B2D24;
+  --ink:#F6EEE6; --ink2:#C3AE9C; --muted:#8C7A6C;
+  --yellow:#F5B92E; --pink:#FF7E9D; --blue:#7BA0FF; --clay:#B98A5E;
+  --sans:"Anuphan",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  display:flex;align-items:center;justify-content:center;padding:40px 20px;
+}
+a{color:inherit}
+::selection{background:var(--yellow);color:var(--bg)}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+
+.card{width:100%;max-width:600px}
+
+/* ---- หัว ---- */
+.top{display:flex;align-items:center;gap:18px}
+.avatar{
+  width:76px;height:76px;flex:none;border-radius:50%;overflow:hidden;
+  border:2px solid var(--line);background:var(--surface2);
+}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+h1{margin:0;font-size:clamp(26px,6vw,34px);font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.roles{margin:6px 0 0;font-size:14px;font-weight:600}
+.roles .a{color:var(--yellow)}.roles .b{color:var(--pink)}.roles .c{color:var(--blue)}
+.roles s{color:var(--muted);font-weight:400;text-decoration:none;padding:0 5px}
+.where{margin:3px 0 0;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+.bio{margin:22px 0 0;color:var(--ink2);font-size:15px}
+
+/* ---- ปุ่มไปพอร์ตเต็ม — เป็นสิ่งเดียวที่อยากให้กดที่สุด เลยทึบอยู่ตัวเดียว ---- */
+.cta{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin:22px 0 0;padding:14px 18px;border-radius:12px;text-decoration:none;
+  background:var(--yellow);color:var(--bg);transition:.18s;
+}
+.cta:hover{transform:translateY(-2px)}
+.cta b{display:block;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.cta i{display:block;font-style:normal;font-size:12px;opacity:.72;margin-top:2px}
+.cta span{font-size:20px;flex:none}
+
+/* ---- รายการ repo ---- */
+h2{
+  margin:34px 0 12px;font-family:var(--mono);font-size:10.5px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  display:flex;align-items:center;gap:12px;
+}
+h2:after{content:"";flex:1;height:1px;background:var(--line)}
+
+.repo{
+  display:block;padding:13px 16px;margin-bottom:8px;text-decoration:none;
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;transition:.18s;
+}
+.repo:hover{border-color:var(--c,var(--yellow));transform:translateY(-2px);background:var(--surface2)}
+.repo-top{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.repo-name{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--c,var(--yellow))}
+.lang{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);margin-left:auto}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.star{font-size:11px;color:var(--muted)}
+.repo p{margin:5px 0 0;font-size:13px;color:var(--ink2);line-height:1.45}
+
+/* ---- ท้าย ---- */
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.link{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:9px;
+  text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink2);
+  background:var(--surface);border:1px solid var(--line);transition:.18s;
+}
+.link:hover{color:var(--yellow);border-color:var(--yellow);transform:translateY(-2px)}
+.link svg{fill:currentColor;flex:none}
+
+footer{
+  margin-top:30px;padding-top:16px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;
+}
+
+@media(max-width:520px){
+  .top{gap:14px}
+  .avatar{width:62px;height:62px}
+  .lang{margin-left:0;width:100%}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<main class="card">
+
+  <div class="top">
+    <div class="avatar"><img src="me.jpg" alt="Nutt Bhanidch" width="76" height="76"></div>
+    <div>
+      <h1>Nutt Bhanidch</h1>
+      <p class="roles"><span class="a">Computer Vision</span><s>·</s><span class="b">LLM Fine-tuning</span><s>·</s><span class="c">Data Pipelines</span></p>
+      <p class="where">Bangkok, TH · B.Eng. KMUTT</p>
+    </div>
+  </div>
+
+  <p class="bio">
+    I build AI systems that have to run in a real workplace — chip anomaly detection
+    on a production line, lane-change detection from road video, and a Thai interview
+    LLM I fine-tuned myself.
+  </p>
+
+  <a class="cta" href="https://portfolio-lemonade678.vercel.app/">
+    <span style="flex:1">
+      <b>Full portfolio</b>
+      <i>Projects with the numbers, the methods, and the limits of each</i>
+    </span>
+    <span aria-hidden="true">↗</span>
+  </a>
+
+  <h2>Selected repositories</h2>
+
+  <a class="repo" style="--c:var(--blue)" href="https://github.com/Lemonade678/Video-based-lane-change-detection">
+    <span class="repo-top">
+      <span class="repo-name">Video-based-lane-change-detection</span>
+      <span class="lang"><span class="dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+    </span>
+    <p>CLRerNet for lanes, YOLOv11 for vehicles, and a StrongSORT-style tracker written
+       from scratch. Research internship at Yuan Ze University, Taiwan.</p>
+  </a>
+
+  <a class="repo" style="--c:var(--yellow)" href="https://github.com/Lemonade678/shopee-sales-dashboard">
+    <span class="repo-top">
+      <span class="repo-name">shopee-sales-dashboard</span>
+      <span class="lang"><span class="star">★ 1</span><span class="dot" style="background:#3178C6"></span>TypeScript</span>
+    </span>
+    <p>Sales analytics for a Shopee store — Next.js and Supabase on the front,
+       Python time-series work behind it.</p>
+  </a>
+
+  <a class="repo" style="--c:var(--clay)" href="https://github.com/Lemonade678/Katna-s-balatro-collection">
+    <span class="repo-top">
+      <span class="repo-name">Katna-s-balatro-collection</span>
+      <span class="lang"><span class="star">★ 2</span><span class="dot" style="background:#000080"></span>Lua</span>
+    </span>
+    <p>Balatro mod built with a friend. The hard part was never inventing cards —
+       it was surviving whatever pile of other people's mods a player already has.</p>
+  </a>
+
+  <a class="repo" style="--c:var(--pink)" href="https://github.com/Lemonade678/portfolio">
+    <span class="repo-top">
+      <span class="repo-name">portfolio</span>
+      <span class="lang"><span class="dot" style="background:#3178C6"></span>TypeScript</span>
+    </span>
+    <p>Source of the full portfolio site. Runs a YOLOv11 model in the visitor's browser,
+       and ships the Python project that trained it.</p>
+  </a>
+
+  <div class="links">
+    <a class="link" href="https://github.com/Lemonade678">
+      <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      GitHub
+    </a>
+    <a class="link" href="https://www.linkedin.com/in/nutt-bhanidch-b1b3161a5/">
+      <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <a class="link" href="mailto:nuttworkbhanidch@gmail.com">
+      <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.2-8 4.8-8-4.8V6l8 4.8L20 6z"/></svg>
+      Email
+    </a>
+  </div>
+
+  <footer>
+    <span>Open to CV &amp; applied ML roles</span>
+    <span>2026</span>
+  </footer>
+
+</main>
+
+</body>
+</html>
