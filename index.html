@@ -129,7 +129,13 @@ footer{
 <main class="card">
 
   <div class="top">
-    <div class="avatar"><img src="me.jpg" alt="Nutt Bhanidch" width="76" height="76"></div>
+    <!-- avatar.jpg ไม่ใช่ me.jpg — ตั้งใจแยกไฟล์
+         me.jpg เป็นภาพเต็มตัวแนวตั้ง 284×459 ใบหน้าอยู่แค่ 20% บนของภาพ
+         พอเอามาใส่วงกลมด้วย object-fit:cover มันครอบตรงกลางภาพ = ได้ลำตัวมาแทนหน้า
+         และต่อให้ดัน object-position ขึ้นสุด หน้าก็ยังไม่มาอยู่กลางวง
+         → เลยครอปเป็นจัตุรัสรอบใบหน้าไว้ล่วงหน้าเลย (320×320 สำหรับจอ retina)
+         me.jpg ยังเก็บไว้ในโฟลเดอร์เป็นต้นฉบับสำหรับครอปใหม่ ไม่ได้ถูกเรียกใช้ -->
+    <div class="avatar"><img src="Re_avatar.jpg" alt="Nutt Bhanidch" width="320" height="320"></div>
     <div>
       <h1>Nutt Bhanidch</h1>
       <p class="roles"><span class="a">Computer Vision</span><s>·</s><span class="b">LLM Fine-tuning</span><s>·</s><span class="c">Data Pipelines</span></p>
@@ -138,9 +144,10 @@ footer{
   </div>
 
   <p class="bio">
-    I'm French — or Lemon, which is where the handle comes from. I build AI systems
+    I'm French — or Lemon, which is where the handle comes from. I love building AI systems
     that have to run in a real workplace: chip anomaly detection on a production line,
     lane-change detection from road video, and a Thai interview LLM I fine-tuned myself.
+    Also support my shop at <a href="https://www.instagram.com/buttertteok4u.by.remmie/" target="_blank" rel="noopener noreferrer">Instagram</a>
   </p>
 
   <a class="cta" href="https://lemonade976.vercel.app/">
