@@ -18,7 +18,7 @@
 
 ## ปุ่ม "Full portfolio" ชี้ไปไหน
 
-`index.html` ตรง `class="cta"` → **<https://lemonade976portfolio.vercel.app/>**
+`index.html` ตรง `class="cta"` → **<https://lemonade976.vercel.app/>**
 (ตรวจแล้วว่าเปิดได้จริง ทุก asset ตอบ 200)
 
 Vercel ตั้งชื่อ production domain จากชื่อโปรเจกต์ **ถ้าเปลี่ยนชื่อโปรเจกต์เมื่อไหร่
